@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="row">
+        <div class="col" style="margin-top: 10px;">
+            <input #concept type="text" (keyup)="typeahead(concept.value)" class="form-control" placeholder="Search concept">
+        </div>
+    </div>
+    <div *ngIf="searching==true">
+        <div (click)="searchConcept(concept.cui)" *ngFor="let concept of relatedConcepts">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{concept.preferredName}}</h5>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">{{concept.alternativeName}}</p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text" style="text-align: right; font-style: italic;">{{concept.type}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="searching==false">
+        <div class="row">
+            <div class="col">
+                <h1 style="margin-top: 15px;">{{conceptData.preferredName}}</h1>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <div *ngIf="conceptData.semanticTypes[0]=='PharmacologicSubstance'
+                                || conceptData.semanticTypes[0]=='OrganicChemical'
+                        " style="margin-left: 50px; color: darkviolet;">
+                            <i class="fas fa-flask fa-10x"></i>
+                        </div>
+                        <div *ngIf="conceptData.semanticTypes[0]=='BodyPartOrganOrOrganComponent'
+                        " style="margin-left: 50px; color: darkred;">
+                            <i class="fas fa-heart fa-10x"></i>
+                        </div>
+                        <div *ngIf="conceptData.semanticTypes[0]=='DiseaseOrSyndrome'
+                                || conceptData.semanticTypes[0]=='CellOrMolecularDysfunction'
+                        " style="margin-left: 50px; color: darkgreen;">
+                            <i class="fas fa-stethoscope fa-10x"></i>
+                        </div>
+                        <div *ngIf="conceptData.semanticTypes[0]!='PharmacologicSubstance'
+                                && conceptData.semanticTypes[0]!='OrganicChemical'
+                                && conceptData.semanticTypes[0]!='BodyPartOrganOrOrganComponent'
+                                && conceptData.semanticTypes[0]!='DiseaseOrSyndrome'
+                                && conceptData.semanticTypes[0]!='CellOrMolecularDysfunction'
+                        " style="margin-left: 50px; color: black;">
+                            <i class="fas fa-question-circle fa-10x"></i>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <br>
+                        <a>CUI: <b>{{conceptData.cui}}</b></a>
+                        <br>
+                        <br>
+                        <a>Ontology: <b>{{conceptData.ontology}}</b></a>
+                        <br>
+                        <br>
+                        <a>Type: <b>{{conceptData.semanticTypes[0]}}</b></a>
+                    </div>
+                </div>
+                <br>
+                <a>{{conceptData.definition}}</a>
+                <br>
+                <br>
+                <div *ngFor="let form of conceptData.surfaceForms; let i=index" style="display: inline;">
+                    <div *ngIf="i<10" style="display: inline;">
+                        <span class="badge badge-secondary" style="margin-left: 2px;"> {{form}} </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <a>{{conceptData.preferredName}}</a>
+                <br>
+                <a>{{conceptData.semanticTypes[0]}}</a>
+                <br>
+                <a>{{conceptData.surfaceForms[0]}}</a>
+                <br>
+                <a>{{conceptData.definition}}</a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="start == true" style="text-align: center;">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <img src="assets/wats.png" width="200px" height="200px">
+        <br>
+        <br>
+        <h5>Search a concept to get started...</h5>
+    </div>
+</div>

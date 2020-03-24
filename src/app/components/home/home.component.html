@@ -1,0 +1,29 @@
+<div class="container" style="overflow: visible;">
+    <br><br>
+    <h6 style="text-align: justify;">IBM ACD/IML is a powerful set of tools that allows researchers to automate the exploration and discovery of medical concepts in big corpus of documents. Build on top of IBM Watson's natural language understanding model, this tool offers a deep understanding
+        of each document, to extract all concepts and their relationships to give the researchers true insights, important trends, and new discoveries. This web application uses PubMed, CTGOV and Medline corpora which are already pre-integrated, however,
+        the user can define his own corpus to use the pre-trained NPL model on his own data.<br><br></h6>
+    <div class="card-deck">
+        <div (click)="goToSearch()" class="card">
+            <img class="card-img-top" src="assets/search.jpg" width="10px" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Advanced Search</h5>
+                <p class="card-text">Search for specific concepts to get advanced statistics such as historical term frequency and co-occurrences.</p>
+            </div>
+        </div>
+        <div (click)="goToGraph()" class="card">
+            <img class="card-img-top" src="assets/concept_search.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Knowledge Network</h5>
+                <p class="card-text">Discover relationships between concepts and documents using a network graph.</p>
+            </div>
+        </div>
+        <div (click)="goToMl()" class="card">
+            <img class="card-img-top1" src="assets/bigdata.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Explore your results</h5>
+                <p class="card-text">Get more relevant results and discover complex relationships between concepts using Insights for Medical Literature API.</p>
+            </div>
+        </div>
+    </div>
+</div>

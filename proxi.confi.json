@@ -1,0 +1,7 @@
+{
+    "/wh-iml/api/v1/*": {
+        "target": "https://us-south.wh-iml.cloud.ibm.com",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

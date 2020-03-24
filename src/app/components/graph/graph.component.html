@@ -1,0 +1,51 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col" style="margin-top: 10px;">
+            <input #concept type="text" (keyup)="typeahead(concept.value)" class="form-control" placeholder="Search concept">
+        </div>
+    </div>
+
+    <div *ngIf="searching==true">
+        <div (click)="ask(concept.preferredName)" *ngFor="let concept of relatedConcepts">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{concept.preferredName}}</h5>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">{{concept.alternativeName}}</p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text" style="text-align: right; font-style: italic;">{{concept.type}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="searching==false">
+        <div style="text-align:center">
+            <p *ngIf="conceptInput"><b>Asking for documents with {{conceptInput}} .... </b></p>
+            <p *ngIf="loadingAnnotations">Getting insights from documents</p>
+            <p *ngIf="loadingNetwork">Loading graph....</p>
+            <div id="network" style="border: cornflowerblue; border-width: 10px;"></div>
+        </div>
+    </div>
+
+    <div *ngIf="start == true" style="text-align: center;">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <img src="assets/wats.png" width="200px" height="200px">
+        <br>
+        <br>
+        <h5>Search a concept to get started...</h5>
+    </div>
+</div>

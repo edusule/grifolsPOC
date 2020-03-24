@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="row">
+        <div class="col" style="margin-top: 10px;">
+            <div class="w3-panel w3-pale-blue" style="padding: 10px; border: indigo; border-style: solid; border-radius: 5px;">
+                <p style="font-style: italic;"> <button (click)="example1()" type="button " class="btn btn-info ">Case 1</button> Identify proteins with functional pathways that could be used to recondition/repair solid organs prior to transplantation. Additionally, establish relationships
+                    between these proteins that may have complementary, synergistic pathways to improve solid organ reconditioning/repair.
+                </p>
+            </div>
+            <div class="w3-panel w3-pale-blue" style="padding: 10px; border: indigo; border-style: solid; border-radius: 5px;">
+                <p style="font-style: italic;"> <button (click)="example2()" type="button " class="btn btn-info ">Case 2</button> Identify literature in which transferrin, plasmin, haptoglobulin, hemopexin, anti-thrombin, C-1 Inhibitor, alpha-1 proteinase inhibitor, IgG and IgM has
+                    been used in solid organ reconditioning/repair. Additionally, establish relationships between these proteins that may have complementary, synergistic pathways to improve solid organ reconditioning/repair.
+                </p>
+            </div>
+            <input #query type="text" (keyup)="typeahead(query.value)" class="form-control" placeholder="Add concepts">
+        </div>
+    </div>
+    <div *ngIf="searching==true">
+        <div (click)="addConcept(concept.cui); query.value = '';" *ngFor="let concept of relatedConcepts">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{concept.preferredName}}</h5>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">{{concept.alternativeName}}</p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text" style="text-align: right; font-style: italic;">{{concept.type}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-deck">
+        <div *ngFor="let concept of concepts">
+            <div class="card" style="margin-top: 10px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title">{{concept.bool}}</h5>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: right;">
+                                <fa-icon [icon]="['fas', returnIcon(concept.type)]" size="2x" [ngStyle]="{color: returnColor(concept.type)}" style="margin: 6px;"></fa-icon>
+                            </p>
+                        </div>
+                    </div>
+                    <h6>{{concept.type}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border border-primary rounded" style="padding: 15px; margin: 20px;">
+        <h3 style=" text-align: center; ">Your query</h3>
+        <h6 style="text-align: center; ">The default operator is AND but you can change to OR or even add some parentheses for more complex queries.</h6>
+        <input [(ngModel)]="adjustedquery " type="text " class="form-control " placeholder="Query ">
+        <p style="text-align: center;">{{adjustedquery}}</p>
+        <div (click)="getDocs() " style="margin-top: 10px; justify-content: center; align-items: center; display: flex; ">
+            <button type="button " class="btn btn-info ">Search</button>
+        </div>
+    </div>
+    <div *ngIf="completed">
+        <h3 style="text-align: center;">{{documents.length + " documents"}}</h3>
+        <div *ngFor="let document of documents " style="margin-top: 10px; ">
+            <div class="card ">
+                <div (click)="goToDoc(document.documentId,document.concepts)" class="card-body">
+                    <h5 class="card-title ">{{document.title}}</h5>
+                    <div class="row ">
+                        <div class="col ">
+                            <p class="card-text ">{{document.documentId}}</p>
+                        </div>
+                        <div class="col ">
+                            <div *ngIf="document.corpus=='pubmed' ">
+                                <p class="card-text " style="text-align: right; font-style: italic; ">
+                                    <fa-icon [icon]="[ 'fas', 'book'] " size="2x " style="color:darkgreen; margin: 6px; vertical-align: middle; "></fa-icon>{{document.corpus}}</p>
+                            </div>
+                            <div *ngIf="document.corpus=='medline' ">
+                                <p class="card-text " style="text-align: right; font-style: italic; ">
+                                    <fa-icon [icon]="[ 'fas', 'book'] " size="2x " style="color:darkslateblue; margin: 6px; vertical-align: middle; "></fa-icon>{{document.corpus}}</p>
+                            </div>
+                            <div *ngIf="document.corpus=='ctgov' ">
+                                <p class="card-text " style="text-align: right; font-style: italic; ">
+                                    <fa-icon [icon]="[ 'fas', 'book'] " size="2x " style="color: darkred; margin: 6px; vertical-align: middle; "></fa-icon>{{document.corpus}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngFor="let concept of document.concepts" style="display: inline;">
+                        <div style="display: inline;">
+                            <span [ngStyle]="{color: returnColor(concept.type)}" class="badge " style="margin-left: 2px;"> {{concept.bool}} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

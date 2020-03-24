@@ -1,0 +1,289 @@
+<div class="container">
+    <div *ngIf="searching==false">
+        <div class="jumbotron" style="padding: 17px; margin: 17px;">
+            <h1 class="display-4">Analyze results</h1>
+            <p class="lead">Explore the results of your query and get meaningful insights</p>
+            <hr class="my-4">
+            <p>Query:</p>
+            <p>{{dataService.query}}</p>
+            <p class="lead" style="text-align: center;">
+                <a (click)="ask('Proteomics')" *ngIf="conceptInput" class="btn btn-primary btn-lg" role="button" style="color: cornsilk;">Explore results</a>
+            </p>
+        </div>
+        <div style="text-align:center;">
+            <div class="row border" style="padding: 17px; margin: 10px;">
+                <div *ngIf="completed" class="col-4">
+                    <div class="row">
+                        <h3>Network Graph</h3>
+                        <br><br><br>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[0].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[0])] " size="1x " [ngStyle]="{color: returnColor(types[0])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang0 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[2].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[2])] " size="1x " [ngStyle]="{color: returnColor(types[2])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang2 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[4].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[4])] " size="1x " [ngStyle]="{color: returnColor(types[4])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang4 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[6].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[6])] " size="1x " [ngStyle]="{color: returnColor(types[6])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang6 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[8].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[8])] " size="1x " [ngStyle]="{color: returnColor(types[8])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang8 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[10].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[10])] " size="1x " [ngStyle]="{color: returnColor(types[10])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang10 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[1].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[1])] " size="1x " [ngStyle]="{color: returnColor(types[1])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang1 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[3].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[3])] " size="1x " [ngStyle]="{color: returnColor(types[3])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang3 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[5].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[5])] " size="1x " [ngStyle]="{color: returnColor(types[5])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang5 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[7].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[7])] " size="1x " [ngStyle]="{color: returnColor(types[7])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang7 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[9].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[9])] " size="1x " [ngStyle]="{color: returnColor(types[9])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang9 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: xx-small;">{{types[11].substring(0,17)}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="text-align: right;">
+                                        <fa-icon [icon]="['fas', returnIcon(types[11])] " size="1x " [ngStyle]="{color: returnColor(types[11])} " style="margin: 6px;"></fa-icon>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slidecontainer">
+                                <input #rang11 (click)="setRanges(rang0.value,rang1.value,rang2.value,rang3.value,rang4.value,rang5.value,rang6.value,rang7.value,rang8.value,rang9.value,rang10.value,rang11.value); adjustNetwork(originalNetworkData)" type="range" min="0" max="100" class="slider"
+                                    value="10">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div id="network" class="border" style="margin: 10px; padding: 5px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="completed==true" class="border" style="padding: 17px">
+        <h3>Co-occurrence matrix</h3>
+        <input #query type="text" (keyup)="typeahead(query.value)" class="form-control" placeholder="Add concepts">
+        <a (click)="case2concepts()" class="btn btn-primary btn-sm" role="button" style="color: white; margin: 10px;">Case 2</a>
+        <div *ngIf="searching1">
+            <div (click)="addConcept(concept.cui); query.value = '';" *ngFor="let concept of relatedConcepts">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{concept.preferredName}}</h5>
+                        <div class="row">
+                            <div class="col">
+                                <p class="card-text">{{concept.alternativeName}}</p>
+                            </div>
+                            <div class="col">
+                                <p class="card-text" style="text-align: right; font-style: italic;">{{concept.type}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck">
+            <div *ngFor="let concept of concepts">
+                <div class="card" style="margin-top: 10px;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title">{{concept.bool}}</h5>
+                            </div>
+                            <div class="col">
+                                <p style="text-align: right;">
+                                    <fa-icon [icon]="['fas', returnIcon(concept.type)]" size="2x" [ngStyle]="{color: returnColor(concept.type)}" style="margin: 6px;"></fa-icon>
+                                </p>
+                            </div>
+                        </div>
+                        <h6>{{concept.type}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="lead" style="text-align: center; margin: 5px;">
+            <a (click)="getConcu(originalNetworkData)" class="btn btn-primary btn-sm" role="button" style="color: white;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Get co-occurrence</a>
+        </p>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th *ngFor="let concept of conceptOcus" scope="col">{{concept}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let concept of conceptOcus; let i = index">
+                    <th scope="row">{{concept}}</th>
+                    <td *ngFor="let item of ocus[i]" [ngStyle]="{'background-color': returnBack(item)}" style="color: white;
+                    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">{{item}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div *ngIf="completed===true">
+        <div *ngFor="let dataset of datasets, let i=index " class="border " style="margin: 10px; padding: 5px">
+            <div *ngIf="i<12">
+                <div [ngStyle]="{border: returnColor(types[i])} " style="border-width: 2px; border-style: solid; margin: auto; padding: 5px; ">
+                    <div class="row">
+                        <div class="col">
+                            <h3>{{types[i]}}</h3>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: right;">
+                                <fa-icon [icon]="['fas', returnIcon(types[i])] " size="6x " [ngStyle]="{color: returnColor(types[i])} " style="margin: 6px;"></fa-icon>
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: block ">
+                            <canvas baseChart [datasets]="dataset" [labels]="labels[i]" [options]="options" [chartType]="'bar'">
+            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
