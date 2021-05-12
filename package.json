@@ -28,7 +28,7 @@
         "bootstrap": "^4.4.1",
         "canvasjs": "^1.8.3",
         "chart.heatmap.js": "0.0.1-alpha",
-        "chart.js": "^2.9.3",
+        "chart.js": "^2.9.4",
         "chartjs": "^0.3.24",
         "jquery": "^3.4.1",
         "ng2-charts": "^2.3.0",
